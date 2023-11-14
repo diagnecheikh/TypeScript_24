@@ -1,24 +1,26 @@
 function unité(n: number): number {
-  return n % 10;
+  return Math.floor(n % 10);
 }
+
 function dizaine(n: number): number {
   let res = Math.floor(n / 10);
   return Math.floor(res / unité(n));
 }
 
-/* function centaine(n: number): number {
-  return Math.floor(n / 100);
-}
- */
 function centaine(n: number): number {
-  return Math.floor(n / 100);
+  let res = Math.floor(n / 100);
+  return Math.floor(res % unité(n));
 }
 
 function estArmstrong(n: number): boolean {
-  if (unité(n) !== 0) {
-    return true;
+  let vérifie = false;
+  let a = unité(n);
+  let b = dizaine(n);
+  let c = centaine(n);
+  if (n !== a || n !== b || n !== c) {
+    return vérifie;
   } else {
-    return false;
+    return !vérifie;
   }
 }
 
@@ -30,7 +32,7 @@ function main(): void {
   console.log("centaine(153) =", centaine(153));
   console.log("estArmstrong(8) =", centaine(8));
   console.log("estArmstrong(8) =", estArmstrong(8));
-  console.log("estArmstrong(456) =", estArmstrong(153));
+  console.log("estArmstrong(153) =", estArmstrong(153));
 }
 
 main();
